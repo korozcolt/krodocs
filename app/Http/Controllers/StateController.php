@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class StateController extends Controller
 {
@@ -14,7 +15,6 @@ class StateController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -44,9 +44,26 @@ class StateController extends Controller
      * @param  \App\Models\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function show(State $state)
+    public function show(Request $request)
     {
-        //
+        if ($request->has("country_code")) {
+            $response = Http::withHeaders([
+                "X-CSCAPI-KEY" => env("COUNTRIES_KEY"),
+            ])->get(
+                env("COUNTRIES_API") .
+                    "countries/" .
+                    $request->country_code .
+                    "/states"
+            );
+            return $response->json();
+        } else {
+            return response()->json(
+                [
+                    "message" => "Country ID is required",
+                ],
+                400
+            );
+        }
     }
 
     /**

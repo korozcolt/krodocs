@@ -15,11 +15,11 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $baseUrl = env("COUNTRIES_API");
         $response = Http::withHeaders([
             "X-CSCAPI-KEY" => env("COUNTRIES_KEY"),
-        ])->get($baseUrl . "countries");
-        dd($response->json());
+        ])->get(env("COUNTRIES_API") . "countries");
+
+        return $response->json();
     }
 
     /**

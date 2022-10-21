@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\StateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,9 @@ use App\Http\Controllers\CountryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get("/", function () {
+    return view("welcome");
 });
 
-Route::resource('countries', CountryController::class);
+Route::resource("countries", CountryController::class);
+Route::resource("states", StateController::class);
