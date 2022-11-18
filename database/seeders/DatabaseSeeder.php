@@ -19,14 +19,15 @@ class DatabaseSeeder extends Seeder
 
         $this->call([RoleSeeder::class]);
 
-        \App\Models\User::factory()
-            ->create([
-                "name" => "Administrator",
-                "email" => "ing.korozco@gmail.com",
-                "password" => bcrypt("rug2c1f5"),
-                "remember_token" => Str::random(10),
-                "email_verified_at" => now(),
-            ])
-            ->assignRole("Admin");
+        \App\Models\User::create([
+            "first_name" => "Kristian",
+            "last_name" => "Orozco",
+            "username" => "Administrator",
+            "email" => "ing.korozco@gmail.com",
+            "password" => bcrypt("rug2c1f5"),
+            "phone" => "573016859339",
+            "remember_token" => Str::random(10),
+            "email_verified_at" => now(),
+        ])->assignRole("Admin");
     }
 }
