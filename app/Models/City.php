@@ -14,9 +14,15 @@ class City extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'iso2',
-        'state_code',
-    ];
+    protected $fillable = ["name", "iso2", "state_code"];
+
+    public function company()
+    {
+        return $this->hasMany(Company::class);
+    }
+
+    public function office()
+    {
+        return $this->hasMany(Office::class);
+    }
 }
